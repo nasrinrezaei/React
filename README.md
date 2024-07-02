@@ -1,6 +1,19 @@
-# React
+
+<details>
+<summary> Some fundamental knowledge</summary>
+
 ## SPA
 Before any framework each page needs a request to the server to be got and an HTML page with CSS and JS is returned to the user’s browsers and this process is done for all links of pages. Furthermore, SPA applications like React are introduced in which efficient JS codes create and manipulate the dom, and just an HTML page once is got when a user clicks on a link to see a website, and JS links handle other changes of displaying the page and interacting with parts of it.
+## NPM
+It is a node package manager and these packages are just node-related libraries which are created by different tool developers
+that can help us with node and JS projects like React projects and we can download them by NPM. Indeed, by NPM we can install libraries globally or locally. The point is that when we run npm i -g create-react-app you just download the latest version of the React library then you should run it and when it is updated you should install the new version.
+
+## NPX
+By using NPX when you run npx creat-react-app app-name, the npx installs and runs creating and downloading React then deletes it and by doing so you can always have projects with the latest version of React
+.What is DOM?
+
+# React
+
 # Why React?
 <details>
 <summary> 1. Don't touch the DOM. I'll do it. </summary>
