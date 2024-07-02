@@ -10,7 +10,8 @@ Imperative programming is instructional and cares about the step-by-step process
 Declarative programming is driven by the result and describing this end result rather than the step-by-step process of getting to the result.
 ### For example
 
-`Imperative 
+```
+Imperative 
 function addArtistNameToBody() {
   const bodyTag = document.querySelector('body')
   const divTag = document.createElement('div')
@@ -18,9 +19,11 @@ function addArtistNameToBody() {
   h1Tag.innerText = "Mitski"
   divTag.append(h1Tag)
   bodyTag.append(divTag)
-}`
+}
+```
 
-`Declarative
+```
+Declarative
 class Artist extends Component {
   render() {
     return(
@@ -28,7 +31,8 @@ class Artist extends Component {
         <h1>{this.props.name}</h1>
       </div>)
   }
-}`
+}
+```
 
 The first is a prime example of the imperative search as it lays out each step of how the search function works and how it got to the result. This really illustrates the HOW and gives discrete ‘instructions’ to get to the desired result. In contrast, the declarative example focuses on purely the result and describes what this result will look like.
 ##.Differences between Declarative programming and Imperative one in changing DOM
@@ -36,13 +40,17 @@ In fact, in Imperative programming, you should tell JS what should do step by st
 ##.Component Architecture
 React has the idea of creating components for our web. Indeed, components are small and large parts of our app which are used to create our app. Generally, they are used in different sections of our project even in other projects. The point is that in React the components are simple JS functions which receive some data and inputs as props and return HTML inside of JS. In addition, components can be defined as functions or classes in React.
 ### Class component
+```
 class Car extends React.Component {
   render() {
     return <h2>Hi, I am a Car!</h2>;
   }
 }
-###Function Component
+```
+```
+### Function Component
 function Car() {
   return <h2>Hi, I am a Car!</h2>;
 }
+```
 
