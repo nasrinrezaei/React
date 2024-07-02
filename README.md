@@ -50,7 +50,7 @@ In fact, in Imperative programming, you should tell JS what should do step by st
 
 ## .Component Architecture
 React has the idea of creating components for our web. Indeed, components are small and large parts of our app which are used to create our app. Generally, they are used in different sections of our project even in other projects. The point is that in React the components are simple JS functions which receive some data and inputs as props and return HTML inside of JS. In addition, components can be defined as functions or classes in React.
-### Class component
+## Class component
 ```
 class Car extends React.Component {
   render() {
