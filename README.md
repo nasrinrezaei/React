@@ -10,7 +10,7 @@ DOM (document object model) is what the browser uses to display a web app and JS
 ### .Declarative vs Imperative
 #### Imperative
 Imperative programming is instructional and cares about the step-by-step process.
-### Declarative
+#### Declarative
 Declarative programming is driven by the result and describing this end result rather than the step-by-step process of getting to the result.
 ### For example
 
