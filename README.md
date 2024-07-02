@@ -4,11 +4,11 @@ Before any framework each page needs a request to the server to be got and an HT
 # Why React?
 <details>
 
-<summary> ## 1. Don't touch the DOM. I'll do it. </summary>
-## .What is DOM?
+<summary> 1. Don't touch the DOM. I'll do it. </summary>
+### .What is DOM?
 DOM (document object model) is what the browser uses to display a web app and JS simply manipulates this DOM. 
-## .Declarative vs Imperative
-### Imperative
+### .Declarative vs Imperative
+#### Imperative
 Imperative programming is instructional and cares about the step-by-step process.
 ### Declarative
 Declarative programming is driven by the result and describing this end result rather than the step-by-step process of getting to the result.
