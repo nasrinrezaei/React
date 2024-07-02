@@ -74,6 +74,14 @@ function Car() {
 It means that the flow of changing Virtual DOM and passing data is from the parent components to their children and consequently one-way data flow makes debugging much easier. When the developer knows where the data is coming from and where it is going, they can dry run (or use tools) to find the problems more efficiently.
 </details>
 
+<details>
+<summary> 4. UI, The rest is up to you.</summary>
+  
+Because React is just a library to create the Virtual DOM to change the UIs of different apps it can be used in other types of applications namely Desktop applications, and VR applications.
+
+The point is that when we install the React library we install both the core React library to create Virtual DOM and the React Dom library which interacts with the actual DOM and implements Virtual DOM’s changes on the actual DOM on the browser.
+</details>
+
 > [!NOTE]
 > What is JSX?
 > It is an HTML code inside the JS function.
