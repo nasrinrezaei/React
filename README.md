@@ -76,6 +76,7 @@ It means that the flow of changing Virtual DOM and passing data is from the pare
 
 <details>
 <summary> 4. UI, The rest is up to you.</summary>
+
   
 Because React is just a library to create the Virtual DOM to change the UIs of different apps it can be used in other types of applications namely Desktop applications, and VR applications.
 
