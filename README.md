@@ -41,7 +41,7 @@ The first is a prime example of the imperative search as it lays out each step o
 ##.Differences between Declarative programming and Imperative one in changing DOM
 In fact, in Imperative programming, you should tell JS what should do step by step to change the DOM in order for showing what you want as a result of an action of the user. Still, by Declarative programming it is React that decides what changes should be done to show what you want. Moreover, you just need to declare what the final state is and it finds the best way to do so. 
 ```
-> [!NOTE]
+> **Note**
 > Changing DOM is a really expensive operation and React does it beneficially.
 ```
 </details>
@@ -53,14 +53,14 @@ In fact, in Imperative programming, you should tell JS what should do step by st
 ### .Component Architecture
 React has the idea of creating components for our web. Indeed, components are small and large parts of our app which are used to create our app. Generally, they are used in different sections of our project even in other projects. The point is that in React the components are simple JS functions which receive some data and inputs as props and return HTML inside of JS. In addition, components can be defined as functions or classes in React.
 ### Class component
-```
+```ruby
 class Car extends React.Component {
   render() {
     return <h2>Hi, I am a Car!</h2>;
   }
 }
 ```
-```
+```ruby
 ### Function Component
 function Car() {
   return <h2>Hi, I am a Car!</h2>;
