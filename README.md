@@ -44,6 +44,8 @@ In fact, in Imperative programming, you should tell JS what should do step by st
 > This is a note
 > **Note**
 > Changing DOM is a really expensive operation and React does it beneficially.
+> [!NOTE]  
+> Highlights information that users should take into account, even when skimming.
 
 </details>
 <details>
