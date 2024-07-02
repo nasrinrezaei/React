@@ -14,7 +14,7 @@ Imperative programming is instructional and cares about the step-by-step process
 Declarative programming is driven by the result and describing this end result rather than the step-by-step process of getting to the result.
 ### For example
 
-```
+```ruby
 //Imperative 
 function addArtistNameToBody() {
   const bodyTag = document.querySelector('body')
@@ -25,7 +25,7 @@ function addArtistNameToBody() {
   bodyTag.append(divTag)
 }
 ```
-```
+```ruby
 //Declarative
 class Artist extends Component {
   render() {
@@ -40,10 +40,10 @@ class Artist extends Component {
 The first is a prime example of the imperative search as it lays out each step of how the search function works and how it got to the result. This really illustrates the HOW and gives discrete ‘instructions’ to get to the desired result. In contrast, the declarative example focuses on purely the result and describes what this result will look like.
 ##.Differences between Declarative programming and Imperative one in changing DOM
 In fact, in Imperative programming, you should tell JS what should do step by step to change the DOM in order for showing what you want as a result of an action of the user. Still, by Declarative programming it is React that decides what changes should be done to show what you want. Moreover, you just need to declare what the final state is and it finds the best way to do so. 
-```ruby
+```
 > [!NOTE]
 > Changing DOM is a really expensive operation and React does it beneficially.
-```ruby
+```
 </details>
 <details>
 
