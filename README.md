@@ -39,20 +39,12 @@ class Artist extends Component {
 
 The first is a prime example of the imperative search as it lays out each step of how the search function works and how it got to the result. This really illustrates the HOW and gives discrete ‘instructions’ to get to the desired result. In contrast, the declarative example focuses on purely the result and describes what this result will look like.
 ##.Differences between Declarative programming and Imperative one in changing DOM
-In fact, in Imperative programming, you should tell JS what should do step by step to change the DOM in order for showing what you want as a result of an action of the user. Still, by Declarative programming it is React that decides what changes should be done to show what you want. Moreover, you just need to declare what the final state is and it finds the best way to do so. 
-> **Note**
-> This is a note
-> **Note**
-> Changing DOM is a really expensive operation and React does it beneficially.
+In fact, in Imperative programming, you should tell JS what should do step by step to change the DOM in order for showing what you want as a result of an action of the user. Still, by Declarative programming it is React that decides what changes should be done to show what you want. Moreover, you just need to declare what the final state is and it finds the best way to do so inasmuch as changing DOM is a really expensive and it must done beneficially.
 
-:::note
-> Highlights information that users should take into account, even when skimming.
-:::
 </details>
 <details>
 
 <summary> 2. Build websites like lego blocks.</summary>
-
 
 ### .Component Architecture
 React has the idea of creating components for our web. Indeed, components are small and large parts of our app which are used to create our app. Generally, they are used in different sections of our project even in other projects. The point is that in React the components are simple JS functions which receive some data and inputs as props and return HTML inside of JS. In addition, components can be defined as functions or classes in React.
@@ -70,7 +62,16 @@ function Car() {
   return <h2>Hi, I am a Car!</h2>;
 }
 ```
-
-
-
 </details>
+
+<details>
+<summary> 3. Unidirectional data flow.</summary>
+### What is Virtual DOM?
+ In our React app, we have states which contain our data and JSX components. In fact, the React library function uses them as inputs to create Virtual Dom. Virtual Dom is a JS tree-liked object that describes our app and says React and how it should update the actual DOM.
+### What is unidirectional data flow?
+It means that the flow of changing Virtual DOM and passing data is from the parent components to their children and consequently one-way data flow makes debugging much easier. When the developer knows where the data is coming from and where it is going, they can dry run (or use tools) to find the problems more efficiently.
+</details>
+
+> [!NOTE]
+> What is JSX?
+> It is an HTML code inside the JS function.
