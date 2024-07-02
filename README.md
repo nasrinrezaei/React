@@ -66,9 +66,10 @@ function Car() {
 
 <details>
 <summary> 3. Unidirectional data flow.</summary>
-###  What is Virtual DOM?
+### What is Virtual DOM?
+  ### Class component
  In our React app, we have states which contain our data and JSX components. In fact, the React library function uses them as inputs to create Virtual Dom. Virtual Dom is a JS tree-liked object that describes our app and says React and how it should update the actual DOM.
-###  What is unidirectional data flow?
+### What is unidirectional data flow?
 It means that the flow of changing Virtual DOM and passing data is from the parent components to their children and consequently one-way data flow makes debugging much easier. When the developer knows where the data is coming from and where it is going, they can dry run (or use tools) to find the problems more efficiently.
 </details>
 
