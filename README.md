@@ -10,7 +10,8 @@ that can help us with node and JS projects like React projects and we can downlo
 
 ## NPX
 By using NPX when you run npx creat-react-app app-name, the npx installs and runs creating and downloading React then deletes it and by doing so you can always have projects with the latest version of React
-.What is DOM?
+</details>
+
 
 # React
 
@@ -99,3 +100,32 @@ The point is that when we install the React library we install both the core Rea
 > [!NOTE]
 > What is JSX?
 > It is an HTML code inside the JS function.
+
+# what exactly is react-scripts?
+Well, simply put, it’s an NPM package that is designed by Facebook and is used by Create React App to perform all the heavy lifting such as module bundling so that you don’t have to manage a Webpack file.
+## What do these four React Scripts do?
+### Well, think of it like this; how would you start a React app without npm start?
+### You’d likely do the following:
+1. You’d create a basic HTML file and include a div element with the id of root to let React render its components.
+2. You’d then write React code using JSX with the help of React and ReactDOM libraries.
+3. You’d transpile and bundle your code using Babel and Webpack.
+4. You’d point your transpiled JavaScript code in the HTML file you created back in Step 01 using a <script> tag.
+
+This is an old school approach to building React. It’s time-consuming, error-prone and doesn’t add business value. Therefore, react-scripts start replaces the following process by automating the process with the single command. So, as a user, all you have to do is run the command npm start which would trigger react-scripts start, which would perform steps 1 to 4 automatically and launch the React app for development purposes.
+
+### start
+This command will start the development server, and it will also react and display the latest version each time a change occurs with the webpack’s Hot Module Replacement (HMR) feature. In addition, it will show lint errors on the terminal if it fails to start the server in the form of meaningful error messages.
+
+# Rendering
+In our app we have main.jsx or index.js file in which this code is located 
+```ruby
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)
+```
+This code means that react dom should render the entire app that is in App component in root element which is in index.html file
+
+
+
