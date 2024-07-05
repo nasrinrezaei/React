@@ -230,5 +230,145 @@ class Welcome extends React.Component {
 # What is local state or state?
 States are the information which just a component which these states are defined in, are aware. In addition, they can keep the changes of data in the curtain component.
 
+### Hooks
+
+In React, hooks are functions that allow you to use state and other React features and lifecycles in functional components. 
+
+1. Built-in Hooks:
+ React provides several built-in hooks, such as useState, useEffect, useContext, useReducer, and more. Each hook serves a specific purpose in managing state, handling side-effects, or accessing context.
+
+2. Custom Hooks:
+ You can also create custom hooks to encapsulate reusable stateful logic that can be shared across components. Custom hooks follow the naming convention useSomething to denote that they are hooks.
 
 
+## How we can define states?
+
+<details>
+  <summary> Class components</summary>
+
+  ### Constructor
+  In React class components, the constructor is a special method used for initializing the component's state and binding event handlers. The constructor is called before the component is mounted and is the first method called when an instance of the component is created.
+
+### Super
+In React class components, super is a keyword used to call the constructor of the parent class. When you define a class component, it typically extends React.Component, which is the parent class. The super call is necessary to properly initialize the component and ensure that the component inherits the properties and methods from React.Component.
+
+### Basic Example
+Here is a simple example that shows how to define and use state in a React class component:
+```ruby
+import React, { Component } from 'react';
+
+class Counter extends Component {
+  constructor(props) {
+    super(props);
+    // Initialize state
+    this.state = {
+      count: 0,
+    };
+  }
+
+  incrementCount = () => {
+    // Update state
+    this.setState((prevState) => ({
+    //prevState is the value which was in the count before changing it
+      count: prevState.count + 1,
+    }));
+  }
+
+  render() {
+    return (
+      <div>
+        <p>Count: {this.state.count}</p>
+        <button onClick={this.incrementCount}>Increment</button>
+      </div>
+    );
+  }
+}
+
+export default Counter;
+```
+### Detailed Breakdown
+
+1. Constructor:
+   
+   . The constructor is used to initialize the component’s state.
+   
+   . The super(props) call is necessary to properly initialize the component and allow access to this.props.
+   
+2. State Initialization:
+
+   . The state is initialized as an object with a count property set to 0.
+   
+   . this.state holds the initial state of the component.
+
+4. Updating State:
+
+   . The incrementCount method updates the state using this.setState.
+   
+   .this.setState is called with a function that takes the previous state and returns an updated state object.
+
+   .This approach ensures the correct state update when the new state depends on the previous state.
+
+5. Rendering:
+
+   . The render method returns JSX that displays the current state and includes a button to trigger the state update.
+
+</details>
+<details>
+   <summary> Function components</summary>
+   In React functional components, state management is handled using the useState hook. The useState hook allows you to add state to functional components, making them capable of managing and updating state just like class components.
+  ### Basic Example
+Here's a simple example of using state in a functional component:
+  
+```ruby
+import React, { Component } from 'react';
+
+class Counter extends Component {
+  constructor(props) {
+    super(props);
+    // Initialize state
+    this.state = {
+      count: 0,
+    };
+  }
+
+  incrementCount = () => {
+    // Update state
+    this.setState((prevState) => ({
+    //prevState is the value which was in the count before changing it
+      count: prevState.count + 1,
+    }));
+  }
+
+  render() {
+    return (
+      <div>
+        <p>Count: {this.state.count}</p>
+        <button onClick={this.incrementCount}>Increment</button>
+      </div>
+    );
+  }
+}
+
+export default Counter;
+```
+### Detailed Breakdown
+
+1. useState Hook:
+
+   . const [count, setCount] = useState(0); initializes the state.
+
+   . count is the current state value.
+
+   . setCount is the function used to update the state.
+
+   . useState(0) sets the initial state value to 0.
+   
+4. Updating State:
+
+   . setCount(count + 1); updates the state when the button is clicked.
+
+3. Rendering:
+
+   . The component renders the current state value and includes a button to trigger the state update.
+
+</details>
