@@ -103,9 +103,9 @@ The point is that when we install the React library we install both the core Rea
 
 # what exactly is react-scripts?
 Well, simply put, it’s an NPM package that is designed by Facebook and is used by Create React App to perform all the heavy lifting such as module bundling so that you don’t have to manage a Webpack file.
-## What do these four React Scripts do?
-### Well, think of it like this; how would you start a React app without npm start?
-### You’d likely do the following:
+### What do these four React Scripts do?
+ Well, think of it like this; how would you start a React app without npm start?
+You’d likely do the following:
 1. You’d create a basic HTML file and include a div element with the id of root to let React render its components.
 2. You’d then write React code using JSX with the help of React and ReactDOM libraries.
 3. You’d transpile and bundle your code using Babel and Webpack.
@@ -113,10 +113,12 @@ Well, simply put, it’s an NPM package that is designed by Facebook and is used
 
 This is an old school approach to building React. It’s time-consuming, error-prone and doesn’t add business value. Therefore, react-scripts start replaces the following process by automating the process with the single command. So, as a user, all you have to do is run the command npm start which would trigger react-scripts start, which would perform steps 1 to 4 automatically and launch the React app for development purposes.
 
-### start
+<details>
+  <summary> npm start</summary>
+  
 This command will start the development server, and it will also react and display the latest version each time a change occurs with the webpack’s Hot Module Replacement (HMR) feature. In addition, it will show lint errors on the terminal if it fails to start the server in the form of meaningful error messages.
 
-# Rendering
+### Rendering
 In our app we have main.jsx or index.js file in which this code is located 
 ```ruby
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -125,7 +127,108 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </React.StrictMode>
 )
 ```
+The point is that what exactly happened in ‘npm start’ command is that it renders the react app and runs it on the local server
 This code means that react dom should render the entire app that is in App component in root element which is in index.html file
+</details>
+<details>
+   <summary> npm build</summary>
+  
+Building a React app involves compiling the application's source code into a format that can be efficiently delivered and executed in a web browser. This process typically includes several steps, which ensure that the app is optimized for performance and compatibility across different environments. Here’s an overview of what building a React app entails:
+
+1. Source Code Compilation:
+
+   . React apps are often written using modern JavaScript features (ES6+), JSX (JavaScript XML), and CSS-in-JS.
+   
+   . During the build process, tools like Babel are used to transpile the code into a format compatible with all browsers, converting modern JavaScript and JSX into plain JavaScript.
+   
+2. Bundling:
+
+   . Bundlers like Webpack or Vite are used to combine the app's JavaScript, CSS, and other assets into a few optimized bundles.
+   
+   . These bundles are typically minimized to reduce file size and improve loading times.
+   
+3. Minification and Optimization:
+
+   . The build process includes minifying the JavaScript and CSS files to remove unnecessary characters (like whitespace and comments) and reduce the file sizes.
+   
+   . Other optimizations, such as tree shaking (removing unused code), are performed to make the app more efficient.
+   
+4. Asset Management:
+   
+   . Assets like images, fonts, and other static files are processed and copied to the build directory.
+   
+   . This may include optimizing images and generating hashed filenames for cache busting.
+   
+5. Environment Configuration:
+
+   . Environment variables can be configured to differentiate between development and production settings.
+   
+   . This might include API endpoints, feature flags, and other configurations that vary between environments.
+   
+6. Generating the Build Output:
+    
+    . The build process outputs the final static files (HTML, CSS, JavaScript, images, etc.) into a build or dist directory.
+    
+    . These files are ready to be served by a web server.
+    
+7. Running the Build Command:
+    
+    . Most React projects use tools like Create React App, Next.js, or custom Webpack configurations.
+   
+    . Running a command like npm run build or yarn build initiates the build process.
+   
+9. Deployment:
+    
+   . The build output is deployed to a web server or a hosting service.
+   
+   . Popular options include services like Vercel, Netlify, GitHub Pages, AWS S3, and traditional web hosting services.
+   
+In summary, building a React app transforms your development code into optimized, production-ready files that can be efficiently loaded and executed in web browsers, ensuring your app performs well and is accessible to users.
+</details>
+<details>
+   <summary> npm eject</summary>
+  
+  ### Babel
+  
+  Babel is a widely-used JavaScript compiler which can compile the latest JS codes to the basic codes that can be understandable for all browsers. It helps in transforming new and upcoming JavaScript standards (ES6/ES2015+ and beyond) into a version of JavaScript that is compatible with older browsers and environments.
+  
+  ### Webpack
+  
+  Webpack is a powerful and popular module bundler for JavaScript applications. It takes modules with dependencies and generates static assets representing those modules.
+  
+  ### Main function of eject
+  
+ The main function of eject is that we can modify and change the process of Babel and Webpack's job and run npm reject to execute the different and modified processes.
+</details>
+
+# What are components?
+  
+  Components are the basic units of the UI of a React app. In fact, the UI of  a site is broken down into different components and each component has its own logic and UI.
+  There are two different types of components:
+ 1. Functional components
+ 2. Class components
+### For example
+
+```ruby
+// Functional components
+function WelcomeMessage(props) {  
+  return <h1>Welcome, {props.name}</h1>;  
+}
+```
+```ruby
+// Class components
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+```
+
+> [!TIP]
+> At the end both of them are used to say React what should render.
+
+# What is local state or state?
+States are the information which just a component which these states are defined in, are aware. In addition, they can keep the changes of data in the curtain component.
 
 
 
