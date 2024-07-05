@@ -320,36 +320,26 @@ export default Counter;
 Here's a simple example of using state in a functional component:
   
 ```ruby
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class Counter extends Component {
-  constructor(props) {
-    super(props);
-    // Initialize state
-    this.state = {
-      count: 0,
-    };
-  }
+const Counter = () => {
+  // Initialize state with useState hook
+  const [count, setCount] = useState(0);
 
-  incrementCount = () => {
-    // Update state
-    this.setState((prevState) => ({
-    //prevState is the value which was in the count before changing it
-      count: prevState.count + 1,
-    }));
-  }
+  const incrementCount = () => {
+    setCount(count + 1);
+  };
 
-  render() {
-    return (
-      <div>
-        <p>Count: {this.state.count}</p>
-        <button onClick={this.incrementCount}>Increment</button>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={incrementCount}>Increment</button>
+    </div>
+  );
+};
 
 export default Counter;
+
 ```
 ### Detailed Breakdown
 
