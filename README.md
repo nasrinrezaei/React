@@ -3,7 +3,7 @@
 <summary> Some fundamental knowledge</summary>
 
 ## SPA
-Before any framework each page needs a request to the server to be got and an HTML page with CSS and JS is returned to the user’s browsers and this process is done for all links of pages. Furthermore, SPA applications like React are introduced in which efficient JS codes create and manipulate the dom, and just an HTML page once is got when a user clicks on a link to see a website, and JS links handle other changes of displaying the page and interacting with parts of it.
+Before any framework each page needs a request to the server to be got and an HTML page with CSS and JS is returned to the user’s browsers and this process is done for all links of pages. Furthermore, SPA applications like React are introduced in which efficient JS codes create and manipulate the dom, and just an HTML page once is got when a user clicks on a link to see a website, and JS links handle other changes of displaying the page and interacting with parts of it. To be exact when user click on a link to see a website the broswer gets an HTML file in which there are links of JS and CSS files of website.
 ## NPM
 It is a node package manager and these packages are just node-related libraries which are created by different tool developers
 that can help us with node and JS projects like React projects and we can download them by NPM. Indeed, by NPM we can install libraries globally or locally. The point is that when we run npm i -g create-react-app you just download the latest version of the React library then you should run it and when it is updated you should install the new version.
@@ -362,3 +362,186 @@ export default Counter;
    . The component renders the current state value and includes a button to trigger the state update.
 
 </details>
+
+## Why by changing state, the class component will re-render?
+To be exact when you change the value of a state object in the class component the JS in React will point to another object as a state in the component consequently by doing so the component understands that the state has been changed and re-render the DOM. The fact is that if you change the value of a state without using setstate method the component can not figure out that the state has been changed inasmuch as the state points to the same object compared with before it was changed.
+
+## What is a shallow merge?
+When you use the setState method in a React class component, React performs a shallow merge of the new state with the existing state. This means that only the properties specified in the setState call will be updated, while other properties in the state will remain unchanged.
+
+## Example of Shallow Merge
+
+Consider the following example of a React class component with a state object containing multiple properties:
+  
+```ruby
+class UserProfile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'John Doe',
+      age: 30,
+      location: 'New York'
+    };
+    this.updateName = this.updateName.bind(this);
+  }
+
+  updateName() {
+    this.setState({ name: 'Jane Smith' });
+  }
+
+  render() {
+    return (
+      <div>
+        <p>Name: {this.state.name}</p>
+        <p>Age: {this.state.age}</p>
+        <p>Location: {this.state.location}</p>
+        <button onClick={this.updateName}>Update Name</button>
+      </div>
+    );
+  }
+}
+
+
+```
+
+Explanation
+
+1. Initial State:
+   
+   . The initial state is set in the constructor with three properties: name, age, and location.
+   
+3. State Update:
+   
+   . When the updateName method is called (e.g., by clicking the button), setState is used to update the name property of the state.
+   
+   . The setState call looks like this: this.setState({ name: 'Jane Smith' }).
+   
+5. Shallow Merge:
+   
+   . React performs a shallow merge, meaning it updates only the name property and leaves age and location unchanged.
+   
+   . The new state will be: { name: 'Jane Smith', age: 30, location: 'New York' }.
+   
+## Asynchronous setState
+
+The setState method in React is considered asynchronous because it doesn't immediately mutate the state object. Instead, it schedules an update to the component's state and informs React that this component and its children need to be re-rendered with the updated state. This allows React to batch multiple state updates together and optimize rendering for better performance. Let's delve deeper into the reasons and mechanisms behind this asynchronous behavior:
+
+# Batching of State Updates
+
+React's setState is asynchronous primarily to enable batching. Batching refers to the process of grouping multiple state updates and re-renders into a single update cycle. This helps improve performance by reducing the number of renders and DOM updates.
+
+# Event Loop and State Update Mechanism
+
+When setState is called, React schedules an update. This update is placed into an internal queue, and React processes this queue in the next event loop tick. This delay allows React to batch multiple updates together.
+
+# Example of Asynchronous setState
+
+Consider the following example:
+
+```ruby
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+    this.increment = this.increment.bind(this);
+  }
+
+  increment() {
+    this.setState({ count: this.state.count + 1 });
+    console.log(this.state.count); // This might log the old state value
+    this.setState({ count: this.state.count + 1 });
+    console.log(this.state.count); // This might still log the old state value
+  }
+
+  render() {
+    return (
+      <div>
+        <p>Count: {this.state.count}</p>
+        <button onClick={this.increment}>Increment</button>
+      </div>
+    );
+  }
+}
+
+```
+
+# Explanation
+
+1. First setState Call:
+
+   . this.setState({ count: this.state.count + 1 }); schedules an update where count is incremented by 1.
+
+   . The state is not immediately updated. Instead, it is placed in a queue.
+
+2. Console Log:
+
+   . console.log(this.state.count); is called immediately after the first setState. At this point, the state has not yet been updated, so it logs the old value of count.
+
+3. Second setState Call:
+
+   . this.setState({ count: this.state.count + 1 }); schedules another update. Since the state has not yet been updated, this call is also based on the old state.
+
+4. React Processes Updates:
+
+   . React processes the state updates at the end of the event loop. It batches the updates together and then updates the state.
+
+   . The component re-renders with the new state.
+
+# Using Functional setState
+
+To handle state updates correctly, especially when the new state depends on the previous state, you should use the functional form of setState:
+
+```ruby
+increment() {
+  this.setState((prevState) => ({ count: prevState.count + 1 }));
+  this.setState((prevState) => ({ count: prevState.count + 1 }));
+}
+```
+
+# Explanation of Functional setState
+
+1. First Functional setState Call:
+
+   . this.setState((prevState) => ({ count: prevState.count + 1 })); schedules an update. React internally keeps track of prevState, ensuring it references the current state at the time of processing.
+
+2. Second Functional setState Call:
+
+   . this.setState((prevState) => ({ count: prevState.count + 1 })); schedules another update, again referencing the current state at the time of processing.
+
+3. React Processes Updates:
+
+   . React processes both updates, ensuring that each update correctly references the most recent state.
+
+# Asynchronous Nature and Callback
+
+To execute code after the state has been updated, you can pass a callback function as the second argument to setState:
+
+```ruby
+this.setState({ count: this.state.count + 1 }, () => {
+  console.log(this.state.count); // This logs the updated state value
+});
+```
+> [!NOTE]
+> Asynchronous is a non-blocking architecture, so the execution of one task isn't dependent on another. Tasks can run simultaneously. Synchronous is a blocking architecture, so the execution of each operation depends on completing the one before it. Each task requires an answer before moving on to the next iteration.
+> 
+## Why keys are important in a loop?
+
+The point is that by dedicating the key to each item of a loop, React can just re-render the modified item in case of changing it’s data. Moreover if you check the DOM on console, you can see there are no keys on elements and the keys are just used by React to identify each item.
+
+## What is componentDidMount() method?
+
+componentDidMount is a lifecycle method in React class components that is called once immediately after a component is mounted (inserted into the tree). It is an ideal place to perform side effects, such as data fetching, subscriptions, or manual DOM manipulations. Here are the key aspects of componentDidMount:
+
+### Key Features of componentDidMount
+
+1. Runs After Initial Render:
+   
+   . componentDidMount is invoked immediately after the first rendering of the component. This means that the component's initial HTML has been rendered and is now part of the DOM.
+   
+2. Perfect for Side Effects:
+   
+   . Since it runs after the component is mounted, componentDidMount is an ideal place for side effects. This includes fetching data from an API, setting up subscriptions, initializing         third-party libraries, and other actions that require a DOM node to be present.
+
+3. Safe to Update State:
+
+   . You can safely call setState inside componentDidMount. This will trigger a re-render, but it will happen before the browser updates the screen. This ensures that the user does not see   an incomplete render.
