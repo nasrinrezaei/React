@@ -227,6 +227,9 @@ class Welcome extends React.Component {
 > [!TIP]
 > At the end both of them are used to say React what should render.
 
+> [!NOTE]
+> The point about the JSX HTML tags is that, they are components which are created by react to attach the event handelers and other options to the components instead of using pure JS and as a result some atributes' name vary from the atributes of HTML tags. 
+
 # What is local state or state?
 States are the information which just a component which these states are defined in, are aware. In addition, they can keep the changes of data in the curtain component.
 
@@ -544,4 +547,58 @@ componentDidMount is a lifecycle method in React class components that is called
 
 3. Safe to Update State:
 
-   . You can safely call setState inside componentDidMount. This will trigger a re-render, but it will happen before the browser updates the screen. This ensures that the user does not see   an incomplete render.
+## Immutability
+Immutability means that an object cannot be modified after it is created. Instead of changing the original object, any update or modification results in the creation of a new object. This concept is often contrasted with mutability, where objects can be altered directly.
+
+### Example of Mutable vs Immutable Operations
+
+Mutable Example:
+
+```ruby
+let person = { name: "John", age: 30 };
+person.age = 31; // The person object is directly modified.
+```
+
+Immutable Example:
+
+```ruby
+let person = { name: "John", age: 30 };
+let updatedPerson = { ...person, age: 31 }; // A new object is created with the updated age.
+
+```
+
+### Immutability in React
+
+In React, immutability is crucial for several reasons:
+
+1. State Management: React components often rely on state to manage dynamic data. Immutable state updates ensure that the state changes are predictable and trackable.
+2. Re-rendering Optimization: React uses a virtual DOM to optimize re-rendering. By leveraging immutability, React can quickly determine which parts of the state have changed, making the reconciliation process more efficient.
+3. Pure Components: Immutability helps in writing pure components, which are easier to test and debug. Pure components render the same output for the same input props and state, ensuring predictable behavior.
+
+### Example in React
+
+Consider a state update in a React component:
+
+### Mutable State Update (Not Recommended):
+
+```ruby
+const [items, setItems] = useState([1, 2, 3]);
+
+const addItem = () => {
+  items.push(4); // Directly modifying the state (mutable)
+  setItems(items); // Updating the state with the modified array
+};
+
+```
+
+### Immutable State Update (Recommended):
+
+```ruby
+const [items, setItems] = useState([1, 2, 3]);
+
+const addItem = () => {
+  setItems([...items, 4]); // Creating a new array with the updated item (immutable)
+};
+
+
+```
