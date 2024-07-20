@@ -1,4 +1,4 @@
-
+ 
 <details>
 <summary> Some fundamental knowledge</summary>
 
@@ -657,3 +657,103 @@ Avoid Inline Functions in Render Methods: When possible, define event handlers a
       }
     }
  ```
+# Props
+
+In React, props can cause a component to re-render under certain conditions. Here's a detailed explanation of how this process works:
+
+## 1. Initial Render
+
+When a React component is initially rendered, it goes through the following lifecycle:
+
+. The component's constructor is called.
+
+. The render method is called, and the component's output (typically JSX) is returned.
+
+. React then updates the DOM to reflect the rendered output.
+
+## 2. Prop Changes Trigger Re-render
+
+When a component's props change, React will trigger a re-render of that component. This happens as follows:
+
+. The parent component re-renders and passes new or updated props to the child component.
+
+. React compares the previous props with the new props.
+
+. If the new props are different (by reference for objects/arrays or by value for primitives), React will schedule an update for the component.
+
+## 3. Component Re-render Lifecycle
+
+When a component receives new props, it goes through the following lifecycle methods (if defined):
+
+. shouldComponentUpdate(nextProps, nextState): This method allows the component to decide whether it should re-render or not. By default, it returns true, but you can override it to return false if you determine that the component should not update. This can help optimize performance.
+
+. componentWillReceiveProps(nextProps): This method is called before rendering when new props are received. (Note: This method is deprecated in favor of static getDerivedStateFromProps.)
+
+. static getDerivedStateFromProps(nextProps, prevState): This is a static method that is called right before rendering. It allows the component to update its state based on the received props. This is the recommended method to use instead of componentWillReceiveProps.
+
+. render(): The render method is called again to determine the updated output based on the new props.
+
+. componentDidUpdate(prevProps, prevState, snapshot): This method is called after the component has been re-rendered. It can be used to perform side-effects like network requests or updating the DOM.
+
+## 4.React's Reconciliation Algorithm
+
+React uses a reconciliation algorithm to efficiently update the DOM:
+
+. It creates a virtual DOM (a lightweight copy of the actual DOM).
+
+. It computes the difference (diff) between the previous virtual DOM and the new virtual DOM created by the updated render method.
+
+. It updates only the parts of the actual DOM that have changed, minimizing the number of changes and improving performance.
+
+## Example
+
+Here's an example to illustrate how props can cause a component to re-render:
+
+``` ruby
+import React, { Component } from 'react';
+
+class ChildComponent extends Component {
+  // This method decides if the component should re-render
+  shouldComponentUpdate(nextProps) {
+    // Only re-render if the 'value' prop has changed
+    return nextProps.value !== this.props.value;
+  }
+
+  render() {
+    console.log('ChildComponent rendered');
+    return <div>{this.props.value}</div>;
+  }
+}
+
+class ParentComponent extends Component {
+  state = {
+    value: 0,
+  };
+
+  componentDidMount() {
+    setInterval(() => {
+      this.setState(prevState => ({ value: prevState.value + 1 }));
+    }, 1000);
+  }
+
+  render() {
+    return <ChildComponent value={this.state.value} />;
+  }
+}
+
+export default ParentComponent;
+```
+In this example:
+. The ParentComponent updates its state every second.
+
+. The ParentComponent passes the value state as a prop to ChildComponent.
+
+. ChildComponent will only re-render if the value prop changes, as determined by the shouldComponentUpdate method.
+
+# CSS in React
+
+The point about CSS styles in React is that they are applied to the entire app and it does not matter where they are written. In fact, there is no scope for them if some libraries are not used.
+
+
+> [!TIP]
+> We just import CSS files like this import './styles.css'; to understand where a component's styles are written.
