@@ -837,3 +837,134 @@ const result1 = increment(2,3); // result1 is 5
 const result2 = increment(2,3); // result2 is 5
 
 ```
+## Differences between rendering a functional component and a class component
+ The fact is that in class components it is the render that just re-render every time but in functional components whole function re-render.
+
+> [!IMPORTANT]
+> The point about setState in functional components is that it is not the setState which makes the component re-render, it is the different value of the state that re-renders the component. In addition if you called setState with the same value of the current state, it would not re-render the component.
+
+<details>
+   <summary> Some Challenges </summary>
+
+In the below code, we will have an infinity loop of re-rendering because the users array from the api is different from the one which is stored in storage despite the fact that they have the same value.
+
+```ruby
+const [monsters, setMonsters] = usestate([]);
+fetch( https://jsonplaceholder.typicode.com/users')
+.then ((response) => response. json())
+.then((users)=>setMonesters(users))
+```
+</details>
+
+<details>
+   <summary> useEffect </summary>
+
+useEffect is a hook in React, introduced with the release of React 16.8, which allows you to perform side effects in function components. Side effects can include data fetching, subscriptions, or manually changing the DOM, and useEffect provides a way to handle these operations in a manner that aligns with the React component lifecycle.
+
+Here’s a basic overview of how useEffect works:
+
+### Syntax
+
+```ruby
+import React, { useEffect } from 'react';
+
+function MyComponent() {
+  useEffect(() => {
+    // This code runs after the component renders
+    
+    return () => {
+      // This code runs when the component unmounts or before the effect runs again
+    };
+  }, [/* dependencies */]);
+
+  return <div>My Component</div>;
+}
+
+```
+### Explanation
+
+1. First Argument: Effect Function
+   
+   . The first argument to useEffect is a function where you can perform your side effect.
+
+   . This function is executed after the component renders (including after the initial render and subsequent updates).
+
+2. Cleanup Function
+
+   . The effect function can return a cleanup function, which is executed before the component unmounts or before the effect runs again.
+
+   . This is useful for cleaning up subscriptions, timers, or other resources to avoid memory leaks.
+
+3. Second Argument: Dependencies Array
+
+   . The second argument to useEffect is an optional array of dependencies.
+
+   . If this array is provided, the effect will only re-run if one of the dependencies has changed since the last render.
+
+   . If the array is empty, the effect runs only once after the initial render.
+
+   . If no second argument is provided, the effect runs after every render.
+
+### Example: Fetching Data
+
+Here’s an example of using useEffect to fetch data from an API when the component mounts:
+
+
+```ruby
+import React, { useState, useEffect } from 'react';
+
+function DataFetchingComponent() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    // Perform data fetching
+    fetch('https://api.example.com/data')
+      .then(response => response.json())
+      .then(data => setData(data))
+      .catch(error => console.error('Error fetching data:', error));
+
+    // Cleanup function (if necessary)
+    return () => {
+      // Cleanup code here
+    };
+  }, []); // Empty array ensures this runs only once after the initial render
+
+  return (
+    <div>
+      {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : 'Loading...'}
+    </div>
+  );
+}
+
+export default DataFetchingComponent;
+
+```
+### Example: Using Dependencies
+
+Here’s an example where useEffect depends on a prop or state value:
+
+
+```ruby
+import React, { useState, useEffect } from 'react';
+
+function Countdown({ start }) {
+  const [count, setCount] = useState(start);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCount(prevCount => prevCount - 1);
+    }, 1000);
+
+    return () => clearInterval(timer); // Cleanup the interval on unmount
+  }, [start]); // Only re-run the effect if `start` changes
+
+  return <div>Countdown: {count}</div>;
+}
+
+export default Countdown;
+
+
+```
+In this example, the interval is set up when the component mounts or when the start prop changes, and it's cleaned up when the component unmounts or before the effect runs again.
+
+</details>
