@@ -101,6 +101,16 @@ The point is that when we install the React library we install both the core Rea
 > What is JSX?
 > It is an HTML code inside the JS function.
 
+# Differences between React and React DOM
+
+ React
+ 
+React is the core library for building user interfaces in a component-based architecture. It provides the tools for defining and managing UI components and their state.
+
+ React DOM
+ 
+React DOM is a separate package that provides DOM-specific methods for React. It serves as the bridge between React components and the actual DOM, enabling React to interact with the browser's DOM.
+
 # what exactly is react-scripts?
 Well, simply put, it’s an NPM package that is designed by Facebook and is used by Create React App to perform all the heavy lifting such as module bundling so that you don’t have to manage a Webpack file.
 ### What do these four React Scripts do?
@@ -857,7 +867,7 @@ fetch( https://jsonplaceholder.typicode.com/users')
 </details>
 
 <details>
-   <summary> useEffect </summary>
+   <summary> ### useEffect </summary>
 
 useEffect is a hook in React, introduced with the release of React 16.8, which allows you to perform side effects in function components. Side effects can include data fetching, subscriptions, or manually changing the DOM, and useEffect provides a way to handle these operations in a manner that aligns with the React component lifecycle.
 
