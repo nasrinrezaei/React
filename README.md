@@ -757,3 +757,83 @@ The point about CSS styles in React is that they are applied to the entire app a
 
 > [!TIP]
 > We just import CSS files like this import './styles.css'; to understand where a component's styles are written.
+
+<blockquote class="imgur-embed-pub" lang="en" data-id="6B556uf"><a href="https://imgur.com/6B556uf">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
+[![Alt text]((https://i.imgur.com/6B556uf.png)]([https://imgur.com/])
+
+# What are the differences between impure and pure functions in JavaScript?
+
+In JavaScript, functions can be classified as either pure or impure based on their behavior and side effects. Understanding the differences between them is crucial for writing clean, maintainable, and predictable code. Here’s a detailed explanation of both types:
+
+## Pure Functions
+
+A pure function is a function that, given the same input, will always return the same output and does not have any side effects.
+
+Characteristics of Pure Functions:
+
+1. Deterministic: The output is determined solely by the input values.
+2. No Side Effects: The function does not modify any external state (e.g., global variables, I/O operations, etc.).
+3. Immutability: The function does not alter the input values or any external data.
+
+### Example:
+
+```ruby
+ function add(a, b) {
+   return a + b;
+ }
+ 
+ const result = add(2, 3); // result is always 5
+
+```
+In this example, add is a pure function because it always returns the same result for the same inputs and does not affect any external state.
+
+## Impure Functions
+
+An impure function is a function that may return different results given the same input and/or has side effects.
+
+## Characteristics of Impure Functions:
+
+1. Non-Deterministic: The output can vary even with the same input values.
+2. Side Effects: The function interacts with or modifies external state (e.g., global variables, I/O operations, database calls, etc.).
+3. Mutability: The function may alter the input values or external data.
+
+### Example
+
+```ruby
+let counter = 0;
+
+function increment() {
+  counter += 1;
+  return counter;
+}
+
+const result1 = increment(); // result1 is 1
+const result2 = increment(); // result2 is 2
+
+```
+
+```ruby
+let c = 4;
+
+function increment(a,b) {
+  return a+b+c;
+}
+
+const result1 = increment(2,3); // result1 is 9
+c=6
+const result2 = increment(2,3); // result2 is 11
+
+```
+```ruby
+let c = 4;
+
+function increment(a,b) {
+c= a*b*600
+  return a+b;
+}
+
+const result1 = increment(2,3); // result1 is 5
+const result2 = increment(2,3); // result2 is 5
+
+```
