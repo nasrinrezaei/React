@@ -1191,3 +1191,141 @@ Here’s an example of how to set up and use React Router DOM v6:
 ### Summary
 
 React Router DOM v6 introduces significant improvements and simplifications over previous versions. It emphasizes a more declarative approach to routing, provides powerful hooks for navigation and state management, and makes working with nested routes more straightforward. The switch from <Switch> to <Routes> and the new element prop for routes are some of the notable changes that aim to make routing in React applications more intuitive and maintainable.
+
+# React Context
+
+React Context is a feature in React that allows you to share state and other data between components without passing props down manually at every level. It provides a way to manage global state and data that need to be accessed by many components in a React application, making it easier to avoid "prop drilling" (the process of passing props through many levels of components).
+
+## Key Concepts of React Context
+
+1. Creating a Context:
+
+    . You create a Context using React.createContext(). This function returns a Context object with two components: Provider
+
+   . Example:
+
+     ```ruby
+     const MyContext = React.createContext();
+   ```
+2. Provider:
+
+   . The Provider component is used to wrap parts of your application and makes the context available to all child components.
+
+. The Provider takes a value prop, which is the data or state you want to share.
+
+Example:
+
+  ```ruby
+     <MyContext.Provider value={someValue}>
+       <ChildComponent />
+     </MyContext.Provider>
+   ```
+
+3. useContext Hook:
+
+   . In modern React, the useContext hook is often used in the component to access context values.
+
+   .It simplifies the syntax and allows you to consume context in functional components.
+
+   Example:
+
+   
+  ```ruby
+    const value = useContext(MyContext);
+   ```
+## When to Use React Context
+
+. Global State Management: When you have state that needs to be shared across many components at different levels of the component tree (e.g., user authentication status, theme, or locale).
+
+. Avoiding Prop Drilling: When passing props through multiple layers of components becomes cumbersome and makes your code harder to manage.
+
+
+## Example of React Context in Action
+
+```ruby
+const BusinessContext = createContext()
+const useBusinessContext = () => {
+  const context = useContext?.(BusinessContext)
+
+  if (context === undefined) {
+    throw new Error('useAppContext was used outside of its Provider')
+  }
+
+  return context
+}
+
+function BusinessContextProvider({ children }) {
+  const {
+    isLoading: isLoadingGetPermission,
+    mutate: getUserPermissions,
+    data: res,
+  } = useGetAllPermissions()
+  const { isLoading: profileLoading, data: profile } = useGetProfile(({ data }) => {
+    getUserPermissions({ businessId: data?.businessId, userId: data?.id })
+  })
+  const contextValue = useMemo(
+    () => ({
+      firstName: `${profile?.data?.firstName || ''}`,
+      name: `${profile?.data?.firstName || ''} ${profile?.data?.lastName || ''}`,
+      avatar: profile?.data?.user?.data?.avatar?.data?.path,
+    
+    }),
+    [
+      res?.data,
+    ]
+  )
+  return (
+    <BusinessContext.Provider value={contextValue}>
+      {(profileLoading || isLoadingGetPermission) && isSecondStageAuthenticated() ? (
+        <PageLoading />
+      ) : (
+        <>{children}</>
+      )}
+    </BusinessContext.Provider>
+  )
+}
+
+export { useBusinessContext, BusinessContextProvider }
+
+   ```
+   
+# Rendering in React Context
+
+Rendering in React is closely related to how React Context works, especially when it comes to managing state and triggering updates in components that consume context values.
+
+1. Re-renders due to Context Changes:
+
+   . When a context value changes, any component that consumes this context will re-render. This is because React needs to update the UI to reflect the new context value.
+
+   . For example, if you update the value prop of a Context.Provider, all components that are consuming that context (either via useContext or Context.Consumer) will re-render to reflect the new data.
+
+    ```ruby
+    <MyContext.Provider value={newValue}>
+      <SomeComponent />
+    </MyContext.Provider>
+
+   ```
+
+    In this example, if newValue changes, SomeComponent and any other components consuming MyContext will re-render
+
+   2. Avoiding Unnecessary Re-renders:
+  
+    . One of the key considerations when using React Context is to manage how and when components re-render. If many components depend on a context value, changing that value will cause all those components to re-render, which can lead to performance issues if not managed properly.
+
+      . Techniques like memoization (using React.memo for functional components or shouldComponentUpdate in class components) can help prevent unnecessary re-renders by ensuring that components only re-render when they actually need to.
+
+   3. Selective Context Consumption:
+  
+      . Another strategy to minimize unnecessary re-renders is to consume context selectively. Instead of passing the entire context value to deeply nested components, you can split context into smaller pieces or only consume parts of the context in components that really need them.
+
+      . For example, if you have a theme context with both colors and font sizes, but some components only need the colors, you might create separate contexts for colors and fonts to reduce re-renders.
+
+   ```ruby
+   const ColorContext = React.createContext();
+   const FontContext = React.createContext();
+   
+   // Components can consume only the context they need
+
+   ```
+
+      
