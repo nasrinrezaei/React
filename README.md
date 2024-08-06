@@ -1362,7 +1362,8 @@ Rendering in React is closely related to how React Context works, especially whe
    const Button = styled.button`
    background: ${props => props.primary ? 'blue' : 'white'};
    color: ${props => props.primary ? 'white' : 'blue'};
-`;
+    `;
+   ```
 
 ## Benefits of CSS-in-JS:
 
@@ -1382,5 +1383,37 @@ Rendering in React is closely related to how React Context works, especially whe
 
 CSS-in-JS is a powerful approach that provides flexibility and modern styling capabilities in React applications, aligning with the trend towards more modular and maintainable front-end codebases.
 
+  ## Example of nested style
+
+   ```ruby
+  import styled from 'styled-components';
+  import {
+  BaseButton, GoogleSignInButton, InvertedButton}
+  from '..button/button.styles';
+
+     export const darDropdownContainer =
+     styled. div`
+     position: absolute;
+     width: 240px; height: 340px;
+     display:
+     flex;
+     flex-direction: column;
+     padding:
+     20px;
+     border: 1px solid black; background-color: white;
+     top: 90px;
+     right: 40px; z-index: 5;
+     ${BaseButton},
+     $｛G00gleSignInButton｝，
+     ${InvertedButton} {
+     margin-top:
+     }
+     `;
+
+     export const EmptyMessage = styled. span`
+      font-size: 18px;
+      margin: 50px auto;
+     `;
    ```
+  
    
